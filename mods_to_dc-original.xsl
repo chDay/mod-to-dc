@@ -185,13 +185,13 @@
 
 		<dc:publisher>
 			<xsl:for-each select="mods:place">
-				<xsl:for-each select="mods:placeTerm">
-					<xsl:if test="@type='text'">
+				<xsl:for-each select="mods:placeTerm[@type='text']">
+<!--					<xsl:if test="@type='text'">-->
 						<xsl:value-of select="."/>
 						<xsl:if test="position()!=last()">
 							<xsl:text>; </xsl:text>
 						</xsl:if>
-					</xsl:if>
+					<!--</xsl:if>-->
 				</xsl:for-each>
 			</xsl:for-each>
 		</dc:publisher>
