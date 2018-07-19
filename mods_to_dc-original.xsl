@@ -183,33 +183,31 @@
 			</xsl:for-each>
 		</dc:publisher>
 
-		<dc:publisher>
+<!--		<dc:publisher>
 			<xsl:for-each select="mods:place">
 				<xsl:for-each select="mods:placeTerm[@type='text']">
-<!--					<xsl:if test="@type='text'">-->
 						<xsl:value-of select="."/>
 						<xsl:if test="position()!=last()">
 							<xsl:text>; </xsl:text>
 						</xsl:if>
-					<!--</xsl:if>-->
 				</xsl:for-each>
 			</xsl:for-each>
-		</dc:publisher>
+		</dc:publisher>-->
 	</xsl:template>
 
 <!-- Edited to just use dateIssued or copyrightDate and only @keyDate value-->
 
-	<xsl:template match="mods:dateIssued | mods:copyrightDate">
-		<xsl:choose>
+	<xsl:template match="mods:dateIssued[@keyDate='yes']">
+<!--		<xsl:choose>
 			<xsl:when test="@keyDate !=''">
-				<dc:date>
+-->				<dc:date>
 					<xsl:value-of select="."/>
 				</dc:date>
-			</xsl:when>
-		</xsl:choose>
+			<!--</xsl:when>
+		</xsl:choose>-->
 	</xsl:template>
 
-	<xsl:template match="mods:dateIssued[@point='start'] | mods:dateCreated[@point='start'] | mods:dateCaptured[@point='start'] | mods:dateOther[@point='start'] ">
+<!--	<xsl:template match="mods:dateIssued[@point='start'] | mods:dateCreated[@point='start'] | mods:dateCaptured[@point='start'] | mods:dateOther[@point='start'] ">
 		<xsl:variable name="dateName" select="local-name()"/>
 		<dc:date>
 			<xsl:value-of select="."/>-<xsl:value-of select="../*[local-name()=$dateName][@point='end']"/>
@@ -223,7 +221,7 @@
 	<xsl:template match="mods:temporal[@point!='start' and @point!='end']  ">
 		<xsl:value-of select="."/>
 	</xsl:template>
-
+-->
 <!-- Edited to change capitalization on Still Image -->
 	<xsl:template match="mods:typeOfResource">
 		<xsl:if test="@collection='yes'">
